@@ -147,4 +147,16 @@ func_head(Widget*, bouton_creer)
   return bouton;
 }
 
+//// CHECKBOX /////////////////////////////////////////////////////////////
+/** Entrées :
+  *   text : texte à afficher
+  * Description :
+  *   Cree une case a cocher avec le texte text
+  */
+Widget* checkbox_creer(char *text)
+{
+  Widget *checkbox = gtk_check_button_new_with_label(text);
+  return checkbox;
+}
+
 #endif // FONCTIONS_H

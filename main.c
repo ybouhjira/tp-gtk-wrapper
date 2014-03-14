@@ -17,10 +17,14 @@ int main(int argc, char **argv)
   Widget *bouton2 = bouton_creer("bouton2");
   Widget *bouton3 = bouton_creer("bouton3");
 
+  Widget *checkbox = checkbox_creer("Case à cocher!!");
+
   conteneur_ajouter(vbox, bouton1);
   conteneur_ajouter(vbox, bouton2);
 
   conteneur_ajouter(hbox, bouton3);
+  conteneur_ajouter(vbox, checkbox);
+
   fenetre_afficher(fen);
   boucle_principale();
   return 0;
