@@ -4,6 +4,8 @@
 #include "macros.h"
 #include <gtk/gtk.h>
 #include <string.h>
+#include <stdarg.h>
+
 typedef GtkWidget Widget;
 
 typedef gboolean boolean;
@@ -85,7 +87,7 @@ func_head(Widget*, fenetre_creer)
   *   Ajoute le widget contenu dans le conteneur (fenetre, layout)
   */
 #define conteneur_ajouter(conteneur, contenu) \
-  gtk_container_add(GTK_CONTAINER(conteneur), contenu);
+  gtk_container_add(GTK_CONTAINER(conteneur), contenu)
 
 /** Conteneur horizontal **/
 func_declare(Widget*, conteneur_h_creer, int espacement; boolean homogene;)
@@ -124,7 +126,7 @@ func_head(Widget*, conteneur_v_creer)
   *   Cree un bouton
   */
 func_declare(Widget*, bouton_creer, char *texte; char *icon;
- void (*callback)(Widget* widget, void* data); void* data;)
+void (*callback)(Widget* widget, void* data); void* data;)
 
 #define bouton_creer(...) func_link(bouton_creer, __VA_ARGS__)
 
@@ -138,11 +140,11 @@ func_head(Widget*, bouton_creer)
   Widget* bouton = gtk_button_new_with_label(texte);
 
   if(strlen(icon))
-      gtk_button_set_image(GTK_BUTTON(bouton),
-                           gtk_image_new_from_file(icon));
+    gtk_button_set_image(GTK_BUTTON(bouton),
+                         gtk_image_new_from_file(icon));
 
   if(callback)
-      g_signal_connect(GTK_OBJECT(bouton), "clicked", callback, data);
+    g_signal_connect(GTK_OBJECT(bouton), "clicked", callback, data);
 
   return bouton;
 }
@@ -158,5 +160,30 @@ Widget* checkbox_creer(char *text)
   Widget *checkbox = gtk_check_button_new_with_label(text);
   return checkbox;
 }
+
+//// MENU /////////////////////////////////////////////////////////////////
+
+/** Entrées :
+  *   nombreElements : le nombre d'éléments du menu
+  *   ... : les elements de type char*
+  * Description :
+  *   Cree un menu déroulant
+  */
+Widget* menu_creer(int nombreElements, ...)
+{
+  Widget *menu = gtk_combo_box_new_text();
+
+  va_list args;
+  int i;
+  va_start(args, nombreElements);
+  for (i = 0; i < nombreElements; ++i)
+      gtk_combo_box_append_text(GTK_COMBO_BOX(menu), va_arg(args, char*));
+  va_end(args);
+  gtk_combo_box_set_active(GTK_COMBO_BOX(menu), 0);
+  return menu;
+}
+
+#define menu_ajouter(menu, text) \
+  gtk_combo_box_append_text(GTK_COMBO_BOX(menu), text);
 
 #endif // FONCTIONS_H

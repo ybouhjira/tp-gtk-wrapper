@@ -19,11 +19,15 @@ int main(int argc, char **argv)
 
   Widget *checkbox = checkbox_creer("Case à cocher!!");
 
+  Widget *menu = menu_creer(3, "Element 1", "Element 2", "Element 3");
+
   conteneur_ajouter(vbox, bouton1);
   conteneur_ajouter(vbox, bouton2);
+  conteneur_ajouter(vbox, checkbox);
 
   conteneur_ajouter(hbox, bouton3);
-  conteneur_ajouter(vbox, checkbox);
+  conteneur_ajouter(hbox, menu);
+
 
   fenetre_afficher(fen);
   boucle_principale();
