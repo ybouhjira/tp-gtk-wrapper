@@ -9,3 +9,16 @@ HEADERS += \
     macros.h \
     fonctions.h
 
+INCLUDEPATH += /usr/include/gtk-2.0 \
+/usr/include/glib-2.0 \
+/usr/lib/i386-linux-gnu/glib-2.0/include/ \
+/usr/include/cairo/ \
+/usr/include/pango-1.0/ \
+/usr/lib/i386-linux-gnu/gtk-2.0/include/ \
+/usr/include/gdk-pixbuf-2.0/ \
+/usr/include/atk-1.0/
+
+
+unix: CONFIG += link_pkgconfig
+unix: PKGCONFIG += gtk+-2.0
+
