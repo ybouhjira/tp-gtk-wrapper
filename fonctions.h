@@ -80,6 +80,13 @@ func_head(Widget*, fenetre_creer)
 #define fenetre_afficher(fen) gtk_widget_show_all(fen)
 
 //// Conteneur ////////////////////////////////////////////////////////////
+
+/** Description :
+  *   Ajoute le widget contenu dans le conteneur (fenetre, layout)
+  */
+#define lier(conteneur, contenu) \
+  gtk_container_add(GTK_CONTAINER(conteneur), contenu);
+
 /** Conteneur horizontal **/
 func_declare(Widget*, conteneur_h_creer, int espacement; boolean homogene;)
 
