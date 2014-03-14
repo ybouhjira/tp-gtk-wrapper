@@ -79,5 +79,31 @@ func_head(Widget*, fenetre_creer)
 
 #define fenetre_afficher(fen) gtk_widget_show_all(fen)
 
+//// Conteneur ////////////////////////////////////////////////////////////
+/** Conteneur horizontal **/
+func_declare(Widget*, conteneur_h_creer, int espacement; boolean homogene;)
+
+#define conteneur_h_creer(...) func_link(conteneur_h_creer, __VA_ARGS__)
+
+func_head(Widget*, conteneur_h_creer)
+{
+  int param_default(espacement, 5);
+  boolean param_default(homogene, FALSE);
+
+  return gtk_hbox_new(homogene, espacement);
+}
+
+/** Conteneur vertical **/
+func_declare(Widget*, conteneur_v_creer, int espacement; boolean homogene;)
+
+#define conteneur_v_creer(...) func_link(conteneur_v_creer, __VA_ARGS__)
+
+func_head(Widget*, conteneur_v_creer)
+{
+  int param_default(espacement, 5);
+  boolean param_default(homogene, FALSE);
+
+  return gtk_vbox_new(homogene, espacement);
+}
 
 #endif // FONCTIONS_H
