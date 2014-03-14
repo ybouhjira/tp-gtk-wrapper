@@ -22,3 +22,5 @@ INCLUDEPATH += /usr/include/gtk-2.0 \
 unix: CONFIG += link_pkgconfig
 unix: PKGCONFIG += gtk+-2.0
 
+CONFIG += c99
+QMAKE_CFLAGS += -Wno-missing-field-initializers
